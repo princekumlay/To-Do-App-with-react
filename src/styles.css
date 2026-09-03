@@ -1,0 +1,253 @@
+:root {
+    --background: #F6F8F7;
+    --container: #EEF2F0;
+    --card: #FFFFFF;
+
+    --text: #17211B;
+    --secondary-text: #64746A;
+
+    --primary: #22C55E;
+    --primary-hover: #16A34A;
+
+    --task-bg: #DCFCE7;
+    --task-text: #166534;
+
+    --delete: #EF4444;
+    --delete-hover: #DC2626;
+
+    --border: #D1D5DB;
+}
+
+[data-theme="dark"] {
+    --background: #101714;
+    --container: #18231E;
+    --card: #202D26;
+
+    --text: #F0FDF4;
+    --secondary-text: #9CAFA3;
+
+    --primary: #22C55E;
+    --primary-hover: #4ADE80;
+
+    --task-bg: #163B26;
+    --task-text: #86EFAC;
+
+    --delete: #F87171;
+    --delete-hover: #EF4444;
+
+    --border: #3F4F45;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  background-color: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#main{
+  background-color: var(--container);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 10px 10px;
+  box-sizing: border-box;
+}
+
+#app-header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+#app-header > h1{
+  color: var(--primary);
+  margin: 10px 0;
+}
+
+#input_task{
+  width: 80%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#input_task>input{
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: solid 1px var(--border);
+  background-color: var(--card);
+  color: var(--text);
+}
+
+#input_task>input::placeholder{
+  color: var(--secondary-text);
+}
+
+#add_task_button{
+  background-color: var(--primary);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 50%;
+  padding: 10px 15px;
+  border: solid 1px var(--border);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+#add_task_button:hover{
+  background-color: var(--primary-hover);
+}
+
+#created_task_container{
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.created_task {
+  background-color: var(--task-bg);
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8px 10px;
+  box-sizing: border-box;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.task-label{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.task-label > input[type="checkbox"]{
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.created_task p {
+  background-color: transparent;
+  color: var(--task-text);
+  padding: 5px 10px;
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.created_task p.done{
+  text-decoration: line-through;
+  color: var(--secondary-text);
+}
+
+.edit-task-input {
+  min-width: 0;
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--card);
+  color: var(--text);
+  font: inherit;
+}
+
+.empty-state,
+.task-count{
+  color: var(--secondary-text);
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.input-delete{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.delete-icon{
+  width: 20px;
+  height: 20px;
+  stroke: var(--delete);
+}
+
+.input-delete > button {
+  border: none;
+  background: none;
+  color: var(--secondary-text);
+  font: inherit;
+  padding: 5px;
+  cursor: pointer;
+}
+.input-delete > button:hover {
+  color: var(--primary-hover);
+}
+.input-delete > button:hover .delete-icon{
+  stroke: var(--delete-hover);
+}
+
+/* ============================================= */
+/* THEME TOGGLE — separate, self-contained component */
+/* ============================================= */
+.theme-toggle{
+  position: relative;
+  width: 52px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.theme-toggle__knob{
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(0);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  color: white;
+  font-size: 12px;
+  line-height: 1;
+}
+
+[data-theme="dark"] .theme-toggle__knob{
+  transform: translateX(24px);
+}
